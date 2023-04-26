@@ -49,6 +49,24 @@ it("Return area of a circle.", () => {
   assert.equal(perimeter, 16);
 });
 
+// Returns null if negative values are present.
+it("Return null area if w and h are negative.", () => {
+  const rect_area = utils.area(-6, 4);
+  expect(rect_area).to.be.a('null');
+  assert.equal(rect_area, null);
+});
+
+it("Retun null perimeter if w and h are negative.", () => {
+  const perimeter = utils.perimeter(-7, 2);
+  expect(perimeter).to.be.a('null');
+  assert.equal(perimeter, null);
+});
+
+it("Return null circle area if negative radius.", () => {
+  const circ_area = utils.circleArea(-3);
+  expect(circ_area).to.be.a('null');
+});
+
 // ========================================================
 // Level 2 Challenges
 // ========================================================
@@ -70,13 +88,53 @@ it("Should create a new (object) Item with name and price", function() {
   expect(item).to.have.property("quantity", 1)
 })
 
-it("Should return an array containing all items in cart")
+it("Should return an array containing all items in cart", () => {
+  // Create and add item to the cart.
+  const nintendoSwitch = utils.createItem("Switch", 599.99);
+  utils.addItemToCart(nintendoSwitch);
+  // Tests datatype and length of shopping cart
+  const shoppingcart = utils.getShoppingCart();
+  expect(shoppingcart).to.be.a("array");
+  assert.equal(cart.length, 1);
+});
 
-it("Should add a new item to the shopping cart")
+it("Add new item to shopping cart", () => {
+  // Create item, shopping cart and then add item to cart
+  const newItem = utils.createItem("Item", 15.99);
+  const cart = utils.getShoppingCart()
+  utils.addItemToCart(newItem);
+  // Cart length and its properties
+  assert.equal(cart.length, 1);
+  expect(cart[0]).to.be.a("object");
+  expect(cart[0]).to.have.property("name", "Item");
+  expect(cart[0]).to.have.property("price", 15.99);
+})
 
-it("Should return the number of items in the cart")
+it("Should add a new item to the shopping cart", () => {
+  // Create items
+  const newItem = utils.createItem("Item", 15.99);
+  const secondItem = utils.createItem("Second Item", 8.99);
+  // Get shopping cart
+  const cart = utils.getShoppingCart();
+  // Add items to the cart
+  utils.addItemToCart(newItem);
+  utils.addItemToCart(secondItem);
+  // Cart Length
+  const cartLength = utils.getNumItemsInCart();
+  assert.equal(cartLength, 2);
+});
 
-it("Should remove items from cart")
+it("Should return the number of items in the cart", () => {
+  // Create items then add to cart
+  const newItem = utils.createItem("Item", 12.99);
+  const cart = utils.getShoppingCart();
+  utils.addItemToCart(newItem);
+  assert.equal(cart.length, 1);
+
+  // Remove items from cart
+  utils.removeItemFromCart(newItem);
+  assert.equal(cart.length, 0);
+});
 
 // ========================================================
 // Stretch Challenges

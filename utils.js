@@ -7,15 +7,32 @@ const sayHello = () => {
 }
 
 const area = (w, h) => {
-  // should return the area
+  // Should return the area unless detects negative values.
+  if (Math.sign(w) < 0 || Math.sign(h) < 0) {
+    return null;
+  } else {
+    return w * h;
+  }
 }
 
 const perimeter = (w, h) => {
-  // should return the perimeter
+  // Should return the perimeter unless detects negative values.
+  if (Math.sign(w) < 0 || Math.sign(h) < 0) {
+    return null;
+  } else {
+    const perimter = (2 * w) + (2 * h);
+    return perimeter;
+  }
 }
 
 const circleArea = r => {
-  // should return the area of the circle
+  // Should return the area of the circle (pi * r^2) unless detects negative values.
+  if (Math.sign(r) < 0) {
+    return null;
+  } else {
+    const area = Math.PI * Math.pow(r, 2);
+    return area;
+  }
 }
 
 // ========================================================
@@ -37,18 +54,25 @@ const createItem = (name, price) => {
 
 const getShoppingCart = () => {
   // should return the current state of shopping cart
+  return shoppingCart;
 }
 
 const addItemToCart = (item) => {
   // should add item to shopping cart
+  shoppingCart.push(item);
 }
 
 const getNumItemsInCart = () => {
   // should return the total quantity of items in cart
+  return shoppingCart.length;
 }
 
 const removeItemFromCart = (item) => {
   // should remove item from shopping cart
+  const index = shoppingCart.indexOf(item);
+  if (index > -1) {
+    shoppingCart.splice(index, 1);
+  }
 }
 
 module.exports = {
