@@ -2,6 +2,8 @@ const mocha = require("mocha")
 const chai = require("chai")
 const utils = require("../utils")
 const expect = chai.expect
+const assert = chai.assert
+const should = chai.should
 
 // ========================================================
 // NOTE: https://mochajs.org/#arrow-functions
@@ -26,8 +28,26 @@ it("should say hello", function() {
 // This is called "Red-Green-Refactor"
 // ========================================================
 
+// Area of a rectangle
+it("Returns area of a rectangle.", () => {
+  const rect_area = utils.area(4, 6);
+  expect(rect_area).to.be.a('number');
+  assert.equal(rect_area, 6);
+})
 
+// Perimeter of a rectangle
+it("Return perimter of a rectangle.", () => {
+  const perimeter = utils.perimeter(10, 6);
+  expect(perimeter).to.be.a('number');
+  assert.equal(perimeter, 16);
+});
 
+// Area of a circle
+it("Return area of a circle.", () => {
+  const circ_area = utils.circleArea(4);
+  expect(circ_area).to.be.a('number');
+  assert.equal(perimeter, 16);
+});
 
 // ========================================================
 // Level 2 Challenges
