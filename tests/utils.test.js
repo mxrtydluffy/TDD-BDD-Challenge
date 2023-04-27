@@ -126,7 +126,7 @@ it("Should add a new item to the shopping cart", () => {
 
 it("Should return the number of items in the cart", () => {
   // Create items then add to cart
-  const newItem = utils.createItem("Item", 12.99);
+  const newItem = utils.createItem("Item", 15.99);
   const cart = utils.getShoppingCart();
   utils.addItemToCart(newItem);
   assert.equal(cart.length, 1);
@@ -144,4 +144,13 @@ it("Should update the count of items in the cart")
 
 it("Should validate that an empty cart has 0 items")
 
-it("Should return the total cost of all items in the cart")
+it("Should return the total cost of all items in the cart", () => {
+  // Add two items to cart
+  const newItem = utils.createItem("Item", 15.99);
+  const secondItem = utils.createItem("Second Item", 5.99);
+  utils.addItemToCart(newItem);
+  utils.addItemToCart(secondItem);
+
+  const total = utils.totalCost()
+  assert.equal(total, 21.98);
+})
