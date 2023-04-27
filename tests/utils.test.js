@@ -3,7 +3,7 @@ const chai = require("chai")
 const utils = require("../utils")
 const expect = chai.expect
 const assert = chai.assert
-const should = chai.should
+const should = chai.should()
 
 // ========================================================
 // NOTE: https://mochajs.org/#arrow-functions
@@ -140,9 +140,25 @@ it("Should return the number of items in the cart", () => {
 // Stretch Challenges
 // ========================================================
 
-it("Should update the count of items in the cart")
+it("Should update the count of items in the cart", () => {
+  const newItem = utils.createItem("Pear", 4.49);
+  utils.addItemToCart(newItem);
+  const cart = utils.getShoppingCart();
 
-it("Should validate that an empty cart has 0 items")
+  // Testing
+  assert.equal(cart[0].quantity, 1);
+
+  // Test for the quantity
+  utils.addItemToCart(newItem);
+  assert.equal(cart[0].quantity, 2);
+});
+
+it("Should validate that an empty cart has 0 items", () => {
+  const cart = utils.getShoppingCart();
+  const empty_cart = utils.cartIsEmpty(cart);
+  expect(empty_cart).to.be.a("boolean");
+  expect(empty_cart).to.equal(true)
+})
 
 it("Should return the total cost of all items in the cart", () => {
   // Add two items to cart
@@ -153,4 +169,4 @@ it("Should return the total cost of all items in the cart", () => {
 
   const total = utils.totalCost()
   assert.equal(total, 21.98);
-})
+});
